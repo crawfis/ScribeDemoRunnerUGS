@@ -1,0 +1,15 @@
+﻿namespace CrawfisSoftware.GameConfig
+{
+    internal static class GameConstants
+    {
+        public const float ResumeDelay = 1.5f;
+        public const float CountdownSeconds = 3f;
+        public const float DefaultLoadingDisplayTime = 1f;
+        public const float QuitDelay = 1f;
+        public const float DelayAfterFailureBeforeAutoTurning = 0.85f; // Should be less than ResumeDelay.
+
+        public const float LeaderboardDisplayTime = 5f;
+
+        public static float GameOverDisplayTime { get; internal set; } = 3f;
+    }
+}

@@ -1,0 +1,15 @@
+﻿using UnityEngine;
+
+namespace CrawfisSoftware.Utility
+{
+    internal class RandomRotation : MonoBehaviour
+    {
+        // Bug: If using PrefabUtility.InstantiatePrefab() the transform is (may be?) reset to the prefab's position after this is called.
+        // Using Start rather than Awake seems to work. Alternatively, adding this component after the prefab is instantiated works.
+        private void Start()
+        {
+            float randomY = UnityEngine.Random.Range(0.0f, 360.0f);
+            transform.localRotation = Quaternion.Euler(0, randomY, 0);
+        }
+    }
+}

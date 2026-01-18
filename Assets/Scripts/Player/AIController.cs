@@ -1,0 +1,53 @@
+﻿using CrawfisSoftware.Events;
+
+using UnityEngine;
+
+namespace CrawfisSoftware.TempleRun
+{
+    /// <summary>
+    /// Deterministic (and perfect?) AI that triggers a turn request whenever the current
+    /// distances gets within a user-specified value of the end of the currently discovered track.
+    ///    Dependency: TurnController, EventsPublisherTempleRun
+    ///    Subscribes: GameStarted
+    ///    Publishes: LeftTurnRequested
+    ///    Publishes: RightTurnRequested
+    /// </summary>
+    public class AIController : MonoBehaviour
+    {
+        [SerializeField] private TurnController _turnController;
+        [Tooltip("Distance from far wall to turn. Should be between (0,opening size]. Can try to turn easy but the difficulty config will determine if possible.")]
+        [SerializeField] private float _turnDistance = .1f;
+        [SerializeField] private bool _isEnabled = true;
+
+        private bool _gameStarted = false;
+
+        private void Awake()
+        {
+            EventsPublisherGameFlow.Instance.SubscribeToEvent(GameFlowEvents.GameStarted, OnGameStarted);
+        }
+
+        private void OnGameStarted(string EventName, object arg1, object arg2)
+        {
+            _gameStarted = true;
+        }
+
+        private void Update()
+        {
+            float distance = Blackboard.Instance.DistanceTracker.DistanceTravelled;
+            if (!_gameStarted || !_isEnabled || _turnController.TurnFailedDistance - _turnDistance > distance) return;
+            switch (_turnController.TurnDirection)
+            {
+                case Direction.Left:
+                    EventsPublisherUserInitiated.Instance.PublishEvent(UserInitiatedEvents.LeftTurnRequested, this, distance);
+                    break;
+                default:
+                    EventsPublisherUserInitiated.Instance.PublishEvent(UserInitiatedEvents.RightTurnRequested, this, distance);
+                    break;
+            }
+        }
+        private void OnDestroy()
+        {
+            EventsPublisherGameFlow.Instance.UnsubscribeToEvent(GameFlowEvents.GameStarted, OnGameStarted);
+        }
+    }
+}
