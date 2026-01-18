@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: CrawfisSoftware
-  productName: TempleRunUGS
+  productName: ScribeDemoRunnerUGS
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.6317975, g: 0.016242431, b: 0.6886792, a: 1}
@@ -931,6 +931,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Purchasing: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -952,10 +953,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 0e23b8b8-6d77-4a47-9365-e06703f8b42c
+  cloudProjectId: 06ba2468-1882-46e6-b96a-99a5aada0d2b
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: TempleRunUGS
+  projectName: ScribeDemoRunnerUGS
   organizationId: crawfis
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
